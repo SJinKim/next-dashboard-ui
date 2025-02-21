@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import { url } from 'inspector';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Lama Dev School Management Dashboard',
-  description: 'Next.js School Management System',
+  title: 'Admin Youth Plus',
+  description: 'Youth Plus Admin page',
 };
 
 export default function RootLayout({
