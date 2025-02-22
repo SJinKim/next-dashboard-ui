@@ -8,6 +8,9 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'Admin Youth Plus',
   description: 'Youth Plus Admin page',
+  icons: {
+    icon: [{ url: '/yp_favicon.png', type: 'image/png' }],
+  },
 };
 
 export default function RootLayout({

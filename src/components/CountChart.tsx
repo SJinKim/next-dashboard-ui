@@ -59,14 +59,14 @@ const CountChart = ({ type }: { type: string }) => {
       {/* BOTTOM */}
       <div className='flex justify-center gap-16'>
         <div className='flex flex-col gap-1'>
-          <div className='w-5 h-5 bg-lamaSky rounded-full' />
+          <div className='w-5 h-5 bg-customSky rounded-full' />
           <h1 className='font-bold'>{data[2].count}</h1>
           <h2 className='text-xs text-gray-300'>
             Boys {(data[2].count / data[0].count) * 100}%
           </h2>
         </div>
         <div className='flex flex-col gap-1'>
-          <div className='w-5 h-5 bg-lamaYellow rounded-full' />
+          <div className='w-5 h-5 bg-customYellow rounded-full' />
           <h1 className='font-bold'>{data[1].count}</h1>
           <h2 className='text-xs text-gray-300'>
             Girls {(data[1].count / data[0].count) * 100}%

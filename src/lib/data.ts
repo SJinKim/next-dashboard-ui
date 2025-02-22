@@ -1,7 +1,8 @@
-// TEMPORARY DATA
+// TEMPORARY DATA - put it into sql table using prisma / and seed it with data
 
 export let role = 'admin';
 
+// teachers
 export const teachersData = [
   {
     id: 1,
@@ -125,6 +126,7 @@ export const teachersData = [
   },
 ];
 
+//students
 export const studentsData = [
   {
     id: 1,
@@ -248,6 +250,7 @@ export const studentsData = [
   },
 ];
 
+//parents
 export const parentsData = [
   {
     id: 1,
@@ -421,7 +424,7 @@ export const classesData = [
     supervisor: 'Iva Frank',
   },
   {
-    id: 5,
+    id: 6,
     name: '5B',
     capacity: 20,
     grade: 5,
