@@ -1,0 +1,107 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                              String            @id @default(uuid())
+  email                           String            @unique
+  phoneNumber                     String
+  password                        String
+  nameKorean                      String
+  nameEnglish                     String
+  gender                          Gender
+  dateOfBirth                     DateTime
+  language                        String
+  instagram                       String?
+  kakaoTalk                       String?
+  currentStatus                   String
+  consentToPersonalDataProcessing Boolean
+  registrationForm                RegistrationForm?
+  admin                           Admin?
+  room                            Room?
+  transport                       Transport?
+  payment                         Payment?
+  medical                         Medical?
+  church                          Church?
+}
+
+model WorshipSession {
+  id               String             @id @default(uuid())
+  sessionName      String
+  date             DateTime
+  location         String
+  payments         Payment[]
+  RegistrationForm RegistrationForm[]
+}
+
+model RegistrationForm {
+  id                 String          @id @default(uuid())
+  registrationNumber String          @unique
+  countryOfResidence String
+  cityOfResidence    String
+  additionalNotes    String?
+  createdAt          DateTime        @default(now())
+  updatedAt          DateTime        @updatedAt
+  hoodieSize         String?
+  user               User            @relation(fields: [id], references: [id])
+  room               Room?           @relation(fields: [roomId], references: [id])
+  worshipSession     WorshipSession? @relation(fields: [worshipSessionId], references: [id])
+  roomId             String?         @unique
+  worshipSessionId   String?
+}
+
+model Admin {
+  id       String @id @default(uuid())
+  username String @unique
+  user     User   @relation(fields: [id], references: [id])
+}
+
+model Room {
+  id                           String            @id @default(uuid())
+  sameGenderRoommatePreference Boolean?
+  accommodation                Boolean
+  passportNumber               String?
+  user                         User?             @relation(fields: [id], references: [id])
+  registrationForm             RegistrationForm?
+}
+
+model Transport {
+  id                    String  @id @default(uuid())
+  transportationInfo    String?
+  detailedTransportInfo String?
+  user                  User    @relation(fields: [id], references: [id])
+}
+
+model Payment {
+  id               String          @id @default(uuid())
+  participationFee Float
+  paymentConfirmed Boolean
+  paymentDate      DateTime?
+  worshipSession   WorshipSession? @relation(fields: [worshipId], references: [id])
+  worshipId        String?
+  user             User            @relation(fields: [id], references: [id])
+}
+
+model Medical {
+  id          String  @id @default(uuid())
+  allergy     String?
+  medications String?
+  user        User    @relation(fields: [id], references: [id])
+}
+
+model Church {
+  id         String @id @default(uuid())
+  church     String
+  pastorName String
+  user       User   @relation(fields: [id], references: [id])
+}
+
+enum Gender {
+  MALE
+  FEMALE
+}
